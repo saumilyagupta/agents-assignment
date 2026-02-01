@@ -27,8 +27,8 @@ class TestClassifyInterruptionTranscript:
         """Scenario 1: 'Okay... yeah... uh-huh' while agent speaking -> should_ignore, no interrupt."""
         # All tokens in ignore_words; none in stop_words
         for transcript in ("Okay yeah uh-huh", "Okay... yeah... uh-huh", "ok yeah uh-huh"):
-            should_ignore, should_stop, only_stop, stop_no_reply = _classify_interruption_transcript(
-                transcript, IGNORE_WORDS, STOP_WORDS
+            should_ignore, should_stop, only_stop, stop_no_reply = (
+                _classify_interruption_transcript(transcript, IGNORE_WORDS, STOP_WORDS)
             )
             assert should_ignore is True
             assert should_stop is False
@@ -58,8 +58,8 @@ class TestClassifyInterruptionTranscript:
     def test_scenario_3_single_stop_word(self) -> None:
         """Scenario 3 variant: single stop word."""
         for transcript in ("stop", "wait", "no"):
-            should_ignore, should_stop, only_stop, stop_no_reply = _classify_interruption_transcript(
-                transcript, IGNORE_WORDS, STOP_WORDS
+            should_ignore, should_stop, only_stop, stop_no_reply = (
+                _classify_interruption_transcript(transcript, IGNORE_WORDS, STOP_WORDS)
             )
             assert should_ignore is False
             assert should_stop is True
